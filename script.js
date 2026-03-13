@@ -140,78 +140,110 @@ document.querySelectorAll('.faq-item').forEach(item => {
 
 
 /* ─── 6. LEAD FORM ─── */
-(function initForm() {
-  const form    = document.getElementById('mainLeadForm');
-  if (!form) return;
-  const btnTxt  = form.querySelector('#submitText');
-  const btnLoad = form.querySelector('#submitLoader');
-  const success = form.querySelector('#formSuccess');
+// (function initForm() {
+//   const form    = document.getElementById('mainLeadForm');
+//   if (!form) return;
+//   const btnTxt  = form.querySelector('#submitText');
+//   const btnLoad = form.querySelector('#submitLoader');
+//   const success = form.querySelector('#formSuccess');
 
-  const fields = {
-    fname: {
-      el:  form.querySelector('#fname'),
-      err: form.querySelector('#fnameErr'),
-      fn:  v => v.trim().length >= 2 ? '' : 'Please enter your full name.'
-    },
-    phone: {
-      el:  form.querySelector('#phone'),
-      err: form.querySelector('#phoneErr'),
-      fn:  v => /^[+\d\s\-()]{7,16}$/.test(v.trim()) ? '' : 'Enter a valid phone number.'
-    },
-    email: {
-      el:  form.querySelector('#email'),
-      err: form.querySelector('#emailErr'),
-      fn:  v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'Enter a valid email address.'
-    },
-    inst: {
-      el:  form.querySelector('#institution'),
-      err: form.querySelector('#instErr'),
-      fn:  v => v.trim().length >= 2 ? '' : 'Enter your institution name.'
-    },
-    city: {
-      el:  form.querySelector('#city'),
-      err: form.querySelector('#cityErr'),
-      fn:  v => v.trim().length >= 2 ? '' : 'Enter your city.'
-    },
-    interest: {
-      el:  form.querySelector('#interest'),
-      err: form.querySelector('#intErr'),
-      fn:  v => v !== '' ? '' : 'Please select an area of interest.'
-    }
-  };
+//   const fields = {
+//     fname: {
+//       el:  form.querySelector('#fname'),
+//       err: form.querySelector('#fnameErr'),
+//       fn:  v => v.trim().length >= 2 ? '' : 'Please enter your full name.'
+//     },
+//     phone: {
+//       el:  form.querySelector('#phone'),
+//       err: form.querySelector('#phoneErr'),
+//       fn:  v => /^[+\d\s\-()]{7,16}$/.test(v.trim()) ? '' : 'Enter a valid phone number.'
+//     },
+//     email: {
+//       el:  form.querySelector('#email'),
+//       err: form.querySelector('#emailErr'),
+//       fn:  v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? '' : 'Enter a valid email address.'
+//     },
+//     inst: {
+//       el:  form.querySelector('#institution'),
+//       err: form.querySelector('#instErr'),
+//       fn:  v => v.trim().length >= 2 ? '' : 'Enter your institution name.'
+//     },
+//     city: {
+//       el:  form.querySelector('#city'),
+//       err: form.querySelector('#cityErr'),
+//       fn:  v => v.trim().length >= 2 ? '' : 'Enter your city.'
+//     },
+//     interest: {
+//       el:  form.querySelector('#interest'),
+//       err: form.querySelector('#intErr'),
+//       fn:  v => v !== '' ? '' : 'Please select an area of interest.'
+//     }
+//   };
 
-  Object.values(fields).forEach(({ el, err, fn }) => {
-    el.addEventListener('blur',  () => { const m = fn(el.value); err.textContent = m; el.classList.toggle('err', !!m); });
-    el.addEventListener('input', () => { if (el.classList.contains('err')) { const m = fn(el.value); err.textContent = m; el.classList.toggle('err', !!m); } });
-  });
+//   Object.values(fields).forEach(({ el, err, fn }) => {
+//     el.addEventListener('blur',  () => { const m = fn(el.value); err.textContent = m; el.classList.toggle('err', !!m); });
+//     el.addEventListener('input', () => { if (el.classList.contains('err')) { const m = fn(el.value); err.textContent = m; el.classList.toggle('err', !!m); } });
+//   });
 
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    let ok = true;
-    Object.values(fields).forEach(({ el, err, fn }) => {
-      const m = fn(el.value); err.textContent = m; el.classList.toggle('err', !!m);
-      if (m) ok = false;
-    });
-    if (!ok) { form.querySelector('.err')?.scrollIntoView({ behavior:'smooth', block:'center' }); return; }
+//   form.addEventListener('submit', async e => {
+//     e.preventDefault();
+//     let ok = true;
+//     Object.values(fields).forEach(({ el, err, fn }) => {
+//       const m = fn(el.value); err.textContent = m; el.classList.toggle('err', !!m);
+//       if (m) ok = false;
+//     });
+//     if (!ok) { form.querySelector('.err')?.scrollIntoView({ behavior:'smooth', block:'center' }); return; }
 
-    btnTxt.style.display  = 'none';
-    btnLoad.style.display = 'inline';
-    form.querySelector('#submitBtn').disabled = true;
+//     btnTxt.style.display  = 'none';
+//     btnLoad.style.display = 'inline';
+//     form.querySelector('#submitBtn').disabled = true;
 
-    /* ── Replace this mock delay with real API call ──
-    const data = Object.fromEntries(new FormData(form));
-    const res  = await fetch('YOUR_ENDPOINT_URL', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(data)
-    });
-    ─────────────────────────────────────────────────── */
-    await new Promise(r => setTimeout(r, 1500));
+//     /* ── Replace this mock delay with real API call ──
+//     const data = Object.fromEntries(new FormData(form));
+//     const res  = await fetch('YOUR_ENDPOINT_URL', {
+//       method:'POST', headers:{'Content-Type':'application/json'},
+//       body: JSON.stringify(data)
+//     });
+//     ─────────────────────────────────────────────────── */
+//     await new Promise(r => setTimeout(r, 1500));
 
-    form.querySelectorAll('.fg,.frow,.lfb-top,#submitBtn,.form-note').forEach(el => el.style.display = 'none');
-    success.style.display = 'block';
-  });
-})();
+//     form.querySelectorAll('.fg,.frow,.lfb-top,#submitBtn,.form-note').forEach(el => el.style.display = 'none');
+//     success.style.display = 'block';
+//   });
+// })();
 
+
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzbicMmqKvHtg3J7iMPQTUbScf8xo7ZwMhPk7ZCaiyICPBgttgHJwq1J9c72bfCByZeLw/exec'
+const form = document.getElementById('mainLeadForm')
+const submitBtn = document.getElementById('submitBtn')
+const submitText = document.getElementById('submitText')
+const submitLoader = document.getElementById('submitLoader')
+const formSuccess = document.getElementById('formSuccess')
+
+form.addEventListener('submit', e => {
+  e.preventDefault()
+  
+  // Button ko disable karein aur loader dikhayein
+  submitBtn.disabled = true
+  submitText.style.display = 'none'
+  submitLoader.style.display = 'inline-block'
+
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => {
+      // Success hone par ye hoga
+      submitBtn.style.display = 'none'
+      formSuccess.style.display = 'block'
+      form.reset() // Form saaf kar dega
+    })
+    .catch(error => {
+      // Error aane par ye hoga
+      console.error('Error!', error.message)
+      alert('Oops! Data save nahi ho paya. Dobara koshish karein.')
+      submitBtn.disabled = false
+      submitText.style.display = 'inline-block'
+      submitLoader.style.display = 'none'
+    })
+})
 
 /* ─── 7. SMOOTH SCROLL (nav offset) ─── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
