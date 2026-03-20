@@ -295,7 +295,44 @@ img  { max-width: 100%; display: block; }
 .hero-anim-fade  { opacity:1; }
 .hero-anim-slide { opacity:1; }
 .hero-delay-1, .hero-delay-2, .hero-delay-3 {}
-.hero-glitch { color:var(--orange); -webkit-text-fill-color:var(--orange); }
+.hero-glitch {
+  position:relative; display:inline-block;
+  color:var(--orange); -webkit-text-fill-color:var(--orange);
+  animation:glitch-color 3s ease-in-out infinite;
+}
+.hero-glitch::before,
+.hero-glitch::after {
+  content:attr(data-text); position:absolute; top:0; left:0;
+  font-style:italic; overflow:hidden; clip-path:inset(0 0 100% 0);
+}
+.hero-glitch::before {
+  color:var(--teal); -webkit-text-fill-color:var(--teal);
+  animation:glitch-top 6s ease-in-out infinite; text-shadow:2px 0 var(--teal);
+}
+.hero-glitch::after {
+  color:var(--orange-d); -webkit-text-fill-color:var(--orange-d);
+  animation:glitch-bot 6s ease-in-out infinite; text-shadow:-2px 0 var(--orange-d);
+}
+@keyframes glitch-color {
+  0%,90%,100% { text-shadow:none; }
+  92% { text-shadow: 3px 0 var(--teal), -3px 0 var(--orange-d); }
+  94% { text-shadow:-3px 0 var(--teal),  3px 0 var(--orange-d); }
+  96% { text-shadow: 3px 0 var(--teal), -3px 0 var(--orange-d); }
+}
+@keyframes glitch-top {
+  0%,89%,100% { clip-path:inset(0 0 100% 0); transform:none; }
+  90% { clip-path:inset(0 0 60% 0);   transform:translate(-3px,-2px); }
+  92% { clip-path:inset(20% 0 40% 0); transform:translate(3px,0); }
+  94% { clip-path:inset(0 0 80% 0);   transform:translate(-2px,1px); }
+  96% { clip-path:inset(0 0 100% 0);  transform:none; }
+}
+@keyframes glitch-bot {
+  0%,89%,100% { clip-path:inset(100% 0 0 0); transform:none; }
+  90% { clip-path:inset(60% 0 0 0);   transform:translate(3px,2px); }
+  92% { clip-path:inset(40% 0 20% 0); transform:translate(-3px,0); }
+  94% { clip-path:inset(80% 0 0 0);   transform:translate(2px,-1px); }
+  96% { clip-path:inset(100% 0 0 0);  transform:none; }
+}
 .htag {
   position:absolute; font-family:var(--fd); font-size:.72rem; font-weight:800;
   padding:5px 13px; border-radius:100px; color:var(--white); pointer-events:none; z-index:4;
