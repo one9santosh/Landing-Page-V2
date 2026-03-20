@@ -467,39 +467,14 @@ img  { max-width: 100%; display: block; }
 /* ================================================================
    STATS BAND
 ================================================================ */
-.stats-band { background:var(--ink); padding:48px 0; }
-.stats-inner {
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:32px;
-  align-items:center;
-}
-.sb-item { text-align:center; }
-.sb-num { font-family:var(--fd); font-size:clamp(2.2rem,6vw,3.2rem); font-weight:900; color:var(--white); display:inline; line-height:1; }
-.sb-suf { font-family:var(--fd); font-size:clamp(1.5rem,4vw,2rem); font-weight:900; color:var(--teal); display:inline; }
-.sb-lbl { font-size:.8rem; color:rgba(255,255,255,.5); margin-top:6px; }
-.sb-div { display:none; }
-
-/* Tablet: 2 columns */
-@media (max-width:768px) {
-  .stats-inner {
-    grid-template-columns:repeat(2,1fr);
-    gap:24px;
-  }
-  .stats-band { padding:40px 0; }
-}
-
-/* Mobile: 1 column */
-@media (max-width:480px) {
-  .stats-inner {
-    grid-template-columns:1fr;
-    gap:16px;
-  }
-  .stats-band { padding:32px 0; }
-  .sb-num { font-size:clamp(1.5rem,5vw,2.2rem); }
-  .sb-suf { font-size:clamp(1rem,3vw,1.5rem); }
-  .sb-lbl { font-size:.7rem; margin-top:4px; }
-}
+.stats-band { background:var(--ink); padding:36px 0; }
+.stats-inner { display:flex; flex-wrap:nowrap; justify-content:space-between; align-items:center; overflow-x:auto; }
+.sb-item { text-align:center; flex:1; min-width:0; padding:0 12px; }
+.sb-num { font-family:var(--fd); font-size:clamp(1.2rem,3vw,3.2rem); font-weight:900; color:var(--white); display:inline; line-height:1; }
+.sb-suf { font-family:var(--fd); font-size:clamp(.9rem,2.2vw,2rem); font-weight:900; color:var(--teal); display:inline; }
+.sb-lbl { font-size:clamp(.6rem,1.1vw,.8rem); color:rgba(255,255,255,.5); margin-top:6px; white-space:nowrap; }
+.sb-div { display:block; width:1px; height:40px; background:rgba(255,255,255,.12); flex-shrink:0; }
+@media (max-width:768px) { .stats-band { padding:24px 0; } .sb-item { padding:0 4px; } }
 
 /* ================================================================
    COURSES
@@ -795,3 +770,4 @@ img  { max-width: 100%; display: block; }
   .fcta { padding:32px 20px; }
   .container { padding:0 16px; }
 }
+
